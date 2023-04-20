@@ -1,6 +1,10 @@
 # Java
 *.class
 
+# Folders
+docs/
+target/
+
 # Gradle
 .gradle
 **/build/
