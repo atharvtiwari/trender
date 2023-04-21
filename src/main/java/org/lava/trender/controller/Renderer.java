@@ -10,10 +10,10 @@ import java.awt.image.DataBufferInt;
 import org.lava.trender.model.Screen;
 
 public class Renderer extends Canvas implements Runnable{
-    private static final serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-    public static final int WIDTH = 1200/4;
-    public static final int ASPECT_RATIO = 16/9
+    public static final int WIDTH = 1200 / 4;
+    public static final int ASPECT_RATIO = 16 / 9;
     public static final int HEIGHT = WIDTH * ASPECT_RATIO;
     public static final int SCALE = 4;
     public static final double FRAME_RATE = 60;
@@ -58,7 +58,7 @@ public class Renderer extends Canvas implements Runnable{
         long lastTime = System.nanoTime();
         double unprocessedTime = 0;
 
-        long frameCounter = System.currentTimeMillis();
+        // long frameCounter = System.currentTimeMillis();
 
         while(isRunning) {
             long currentTime = System.nanoTime();
@@ -71,7 +71,6 @@ public class Renderer extends Canvas implements Runnable{
                 update();
             }
             render();
-
         }
         dispose();
     }
@@ -84,7 +83,29 @@ public class Renderer extends Canvas implements Runnable{
         Graphics g = bs.getDrawGraphics();
         for (int i =0; i< pixels.length; i++)
             pixels[i] = 0;
-        screen.render(game);
         
+        screen.render(game);
+
+        for (int i = 0; i < pixels.length; ++i)
+            pixels[i] = screen.pixels[i];
+        
+        g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
+
+        g.dispose();
+        bs.show();
+    }
+
+    public void update() {
+        game.update(inputHandler.keys);
+    }
+    
+    public void stop() {
+        if (!isRunning)
+            return;
+        isRunning = false;
+    }
+
+    public void dispose() {
+        System.exit(0);
     }
 }
