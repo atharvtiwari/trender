@@ -6,5 +6,5 @@ public class SolidBlock extends Block
      {
         SOLID_RENDER = true;
         SOLID_MOTION = true;
-     }   
+     }
 }

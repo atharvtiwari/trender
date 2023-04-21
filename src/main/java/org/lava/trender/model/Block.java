@@ -3,8 +3,6 @@ package org.lava.trender.model;
 import java.util.ArrayList;
 import java.util.List;
 
-// import org.lava.trender.model.Sprite;
-
 public class Block
 {
     public boolean SOLID_RENDER = false;

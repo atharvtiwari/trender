@@ -3,6 +3,7 @@
  */
 
 plugins {
+    id 'application'
     id 'java-library'
     id 'maven-publish'
 }
@@ -37,4 +38,19 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(Javadoc) {
     options.encoding = 'UTF-8'
+}
+
+application {
+    mainClass = 'org.lava.trender.App'
+}
+
+sourceSets {
+    main {
+        java {
+                srcDirs= ["src/main/java"]
+        }
+        resources {
+                srcDirs= ["src/main/resources"]
+        }
+    }
 }
