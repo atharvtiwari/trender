@@ -7,7 +7,7 @@ public class App {
         JFrame frame = new JFrame();
         frame.setTitle("Lava Project");
         frame.setResizable(false);
-        App game = new App();
+        Placeholder game = new Placeholder();
         frame.add(game);
         frame.pack();
         frame.setLocationRelativeTo(null);
