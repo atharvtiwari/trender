@@ -10,7 +10,7 @@ public class Bitmap
     {
         this.width = width;
         this.height = height;
-        this.pixels = new int[width * height]; 
+        this.pixels = new int[width * height];
     }
 
     public void render(Bitmap bitmap, int ox, int oy)
@@ -19,26 +19,17 @@ public class Bitmap
         {
             int yy = y + oy;
             if (yy < 0 || yy >= height)
-            {
                 continue;
-            }
-            else
+            
+            for (int x = 0; x < bitmap.width; x++)
             {
-                for (int x = 0; x < bitmap.width; x++)
+                int xx = x + ox;
+                if (xx < 0 || xx >= width)
+                    continue;
+                int alpha = bitmap.pixels[x + (y * bitmap.width)];
+                if (alpha > 0)
                 {
-                    int xx = x + ox;
-                    if (xx < 0 || xx >= width)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        int alpha = bitmap.pixels[x + (y * bitmap.width)];
-                        if (alpha > 0)
-                        {
-                            pixels[xx + (yy * width)] = alpha;
-                        }
-                    }
+                    pixels[xx + (yy * width)] = alpha;
                 }
             }
         }

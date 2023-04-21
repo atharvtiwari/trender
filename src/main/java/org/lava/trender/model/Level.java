@@ -37,7 +37,7 @@ public class Level {
 
                 int type = pixels[x + y * width];
 
-                if (type == 0xFFFFFFF) {
+                if (type == 0xFFFFFF) {
                     block = new SolidBlock();
                     block.colour = 0x667CDB & 0x555555;
                 }
