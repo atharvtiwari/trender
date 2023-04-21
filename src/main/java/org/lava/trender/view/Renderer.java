@@ -1,4 +1,4 @@
-package org.lava.trender.controller;
+package org.lava.trender.view;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -7,16 +7,17 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
+import org.lava.trender.controller.Game;
+import org.lava.trender.controller.InputHandler;
 import org.lava.trender.model.Screen;
 
-public class Renderer extends Canvas implements Runnable{
+public class Renderer extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
 
-    public static final int WIDTH = 1200 / 4;
-    public static final int ASPECT_RATIO = 16 / 9;
-    public static final int HEIGHT = WIDTH * ASPECT_RATIO;
+    public static final int WIDTH = 160;
+    public static final int HEIGHT = WIDTH  * 3 / 4;
     public static final int SCALE = 4;
-    public static final double FRAME_RATE = 60;
+    public static final double FRAME_RATE = 60.0;
 
     private boolean isRunning = false;
 
@@ -29,6 +30,8 @@ public class Renderer extends Canvas implements Runnable{
 
     public Renderer() {
         Dimension dimension= new Dimension(WIDTH * SCALE, HEIGHT * SCALE);
+        setMinimumSize(dimension);
+        setMaximumSize(dimension);
         setPreferredSize(dimension);
 
         image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_RGB);

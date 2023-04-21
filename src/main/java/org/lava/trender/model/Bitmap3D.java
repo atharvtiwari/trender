@@ -18,7 +18,7 @@ public class Bitmap3D extends Bitmap {
         for (int x = 0; x < width; ++x)
             depthBufferWall[x] = 0;
         
-        for (int x = 0; x < width; ++x)
+        for (int x = 0; x < width * height; ++x)
             depthBuffer[x] = 10000;
         
         fov = height;
@@ -39,7 +39,7 @@ public class Bitmap3D extends Bitmap {
 
         Level level = game.level;
         for (int y = -1; y <= level.height; ++y) {
-            for (int x = -1; x < level.width; ++y) {
+            for (int x = -1; x <= level.width; ++x) {
                 Block c = level.getBlock(x, y);
 
                 if (!c.SOLID_RENDER)
@@ -87,8 +87,8 @@ public class Bitmap3D extends Bitmap {
         
         double xPixel0 = xx / zz * fov + xCenter - (fov / 2) / zz;
         double xPixel1 = xx / zz * fov + xCenter + (fov / 2) / zz;
-        double yPixel0 = yy / zz * fov + xCenter - (fov / 2) / zz;
-        double yPixel1 = yy / zz * fov + xCenter + (fov / 2) / zz;
+        double yPixel0 = yy / zz * fov + yCenter - (fov / 2) / zz;
+        double yPixel1 = yy / zz * fov + yCenter + (fov / 2) / zz;
         
         int xp0 = (int) (xPixel0);
         int xp1 = (int) (xPixel1);

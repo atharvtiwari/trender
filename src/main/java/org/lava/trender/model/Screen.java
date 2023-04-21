@@ -26,5 +26,4 @@ public class Screen extends Bitmap {
         perspectiveVision.renderFog(3);
         render(perspectiveVision, 0, 0);
     }
-    
 }
