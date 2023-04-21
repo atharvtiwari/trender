@@ -4,6 +4,7 @@
 # Folders
 docs/
 target/
+bin/
 
 # Gradle
 .gradle
