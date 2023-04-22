@@ -3,16 +3,26 @@ package org.lava.trender.model;
 import org.lava.trender.controller.Game;
 
 public class Player {
+
+    private static Player instance = null;
+
     public Game game;
     public Level level;
     public double x, y, xa, ya, ra, rot;
 
-    public Player(Game game) {
+    private Player(Game game) {
         this.game = game;
         this.level = game.level;
         this.x = level.xSpawn;
         this.y = level.ySpawn;
         rot = -Math.PI / 2.0;
+    }
+
+    public static Player getInstance(Game game) {
+        if (instance == null) {
+            instance = new Player(game);
+        }
+        return instance;
     }
 
     public void update(boolean up, boolean down, boolean left, boolean right, boolean turnLeft, boolean turnRight) {
@@ -34,7 +44,7 @@ public class Player {
             ++ra;
         if (turnRight)
             --ra;
-        
+
         double rCos = Math.cos(rot);
         double rSin = Math.sin(rot);
 
@@ -46,7 +56,7 @@ public class Player {
             x += xa;
         if (isFree(x, y + ya))
             y += ya;
-        
+
         xa *= 0.6;
         ya *= 0.6;
         ra *= 0.6;
@@ -68,7 +78,7 @@ public class Player {
             return false;
         if (level.getBlock(x1, y1).SOLID_MOTION)
             return false;
-        
+
         return true;
     }
 }

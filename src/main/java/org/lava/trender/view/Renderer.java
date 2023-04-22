@@ -51,7 +51,7 @@ public class Renderer extends Canvas implements Runnable {
     }
 
     public void init() {
-        game = new Game();
+        game = Game.getInstance();
         screen = new Screen(WIDTH, HEIGHT);
     }
 
