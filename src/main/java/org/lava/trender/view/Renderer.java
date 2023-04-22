@@ -52,7 +52,7 @@ public class Renderer extends Canvas implements Runnable {
     }
 
     public void init() {
-        game = new Game();
+        game = Game.getInstance();
         screen = new BitmapFactory().createScreen(WIDTH, HEIGHT);
     }
 

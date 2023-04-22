@@ -6,13 +6,22 @@ import org.lava.trender.model.Level;
 import org.lava.trender.model.Player;
 
 public class Game {
+    private static Game instance = null;
+
     public Level level;
     public Player player;
     public int time;
 
-    public Game() {
+    private Game() {
         level = Level.loadLevel("level0");
-        player = new Player(this);
+        player = Player.getInstance(this);
+    }
+
+    public static Game getInstance() {
+        if (instance == null) {
+            instance = new Game();
+        }
+        return instance;
     }
 
     public void update(boolean[] keys) {

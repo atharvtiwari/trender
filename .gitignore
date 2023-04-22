@@ -5,6 +5,7 @@
 docs/
 target/
 bin/
+.idea/
 
 # Gradle
 .gradle
