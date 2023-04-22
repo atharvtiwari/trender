@@ -60,13 +60,13 @@ public class Player {
         int y0 = (int) (Math.round(yy - d));
         int y1 = (int) (Math.round(yy + d));
 
-        if (level.getBlock(x0, y0).SOLID_MOTION)
+        if (level.getBlock(x0, y0).isSolidMotion())
             return false;
-        if (level.getBlock(x1, y0).SOLID_MOTION)
+        if (level.getBlock(x1, y0).isSolidMotion())
             return false;
-        if (level.getBlock(x0, y1).SOLID_MOTION)
+        if (level.getBlock(x0, y1).isSolidMotion())
             return false;
-        if (level.getBlock(x1, y1).SOLID_MOTION)
+        if (level.getBlock(x1, y1).isSolidMotion())
             return false;
         
         return true;

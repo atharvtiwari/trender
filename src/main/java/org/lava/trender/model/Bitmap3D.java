@@ -42,7 +42,7 @@ public class Bitmap3D extends Bitmap {
             for (int x = -1; x <= level.width; ++x) {
                 Block c = level.getBlock(x, y);
 
-                if (!c.SOLID_RENDER)
+                if (!c.isSolidRender())
                     continue;
 
                 Block e = level.getBlock(x + 1, y);
@@ -50,14 +50,14 @@ public class Bitmap3D extends Bitmap {
                 Block s = level.getBlock(x, y - 1);
                 Block n = level.getBlock(x, y + 1);
 
-                if (!e.SOLID_RENDER)
-                    renderWall(x + 1, y, x + 1, y + 1, c.texture, (c.colour & 0xfefefe) >> 1);
-                if (!w.SOLID_RENDER)
-                    renderWall(x, y + 1, x, y, c.texture, (c.colour & 0xfefefe) >> 1);
-                if (!s.SOLID_RENDER)
-                    renderWall(x, y, x + 1, y, c.texture, c.colour);
-                if (!n.SOLID_RENDER)
-                    renderWall(x + 1, y + 1, x, y + 1, c.texture, c.colour);
+                if (!e.isSolidRender())
+                    renderWall(x + 1, y, x + 1, y + 1, c.getTexture(), (c.getColour() & 0xfefefe) >> 1);
+                if (!w.isSolidRender())
+                    renderWall(x, y + 1, x, y, c.getTexture(), (c.getColour() & 0xfefefe) >> 1);
+                if (!s.isSolidRender())
+                    renderWall(x, y, x + 1, y, c.getTexture(), c.getColour());
+                if (!n.isSolidRender())
+                    renderWall(x + 1, y + 1, x, y + 1, c.getTexture(), c.getColour());
             }
         }
 
@@ -65,9 +65,9 @@ public class Bitmap3D extends Bitmap {
             for (int x = -1; x <= level.width; ++x) {
                 Block c = level.getBlock(x, y);
 
-                for (int i = 0; i < c.sprites.size(); ++i) {
-                    Sprite sprite = c.sprites.get(i);
-                    renderSprite(x + sprite.x, sprite.y, y + sprite.z, sprite.texture, sprite.colour);
+                for (int i = 0; i < c.getSprites().size(); ++i) {
+                    Sprite sprite = c.getSprites().get(i);
+                    renderSprite(x + sprite.getX(), sprite.getY(), y + sprite.getZ(), sprite.getTexture(), sprite.getColour());
                 }
             }
         }
@@ -249,8 +249,8 @@ public class Bitmap3D extends Bitmap {
 
                 Block block = level.getBlock(xTile, yTile);
 
-                int tex = yd > 0 ? block.floorTexture : block.ceilingTexture;
-                int col = yd > 0 ? block.floorColour : block.ceilingColour;
+                int tex = yd > 0 ? block.getFloorTexture() : block.getCeilingTexture();
+                int col = yd > 0 ? block.getFloorColour() : block.getCeilingColour();
 
                 depthBuffer[x + y * width] = zd;
                 pixels[x + y * width] = Textures.textures.pixels[((xPix & 15) + tex * 16) | (15 - (yPix & 15) + 16) * Textures.textures.width] * col;

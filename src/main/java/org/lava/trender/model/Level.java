@@ -33,24 +33,22 @@ public class Level {
         
         for (int y = 0; y < height; ++y) {
             for (int x = 0; x < width; ++x) {
-                Block block = new Block();
+                Block block = new Block.BlockBuilder().build();
 
                 int type = pixels[x + y * width];
 
                 if (type == 0xFFFFFF) {
-                    block = new SolidBlock();
-                    block.colour = 0x667CDB & 0x555555;
+                    block = new Block.BlockBuilder().setSolidMotion(true).setSolidRender(true).setColour(0x667CDB & 0x555555).build();
                 }
                 else if (type == 0xFFFF00) {
                     xSpawn = x;
                     ySpawn = y;
                 }
                 else if (type == 0x00FF00) {
-                    block.addSprite(new Sprite(0, 0, 0, 0, 0x003300));;
+                    block = new Block.BlockBuilder().addSprite(new Sprite.SpriteBuilder().setColour(0x003300).build()).build();
                 }
                 else if (type == 0xff00ff) {
-                    block.ceilingColour = 0x550055;
-                    block.floorColour = 0x550000;
+                    block = new Block.BlockBuilder().setCeilingColour(0x550055).setFloorColour(0x550000).build();
                 }
 
                 tile[x + y * width] = block;
@@ -60,7 +58,7 @@ public class Level {
 
     public Block getBlock(int x, int y) {
         if (x< 0 || y < 0 || x >= width ||y >= height)
-            return new SolidBlock();
+            return new Block.BlockBuilder().setSolidMotion(true).setSolidRender(true).build();
         
             return tile[x + y * width];
     }
