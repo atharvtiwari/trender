@@ -10,12 +10,13 @@ import java.awt.image.DataBufferInt;
 import org.lava.trender.controller.Game;
 import org.lava.trender.controller.InputHandler;
 import org.lava.trender.model.Screen;
+import org.lava.trender.model.BitmapFactory;
 
 public class Renderer extends Canvas implements Runnable {
     private static final long serialVersionUID = 1L;
 
     public static final int WIDTH = 160;
-    public static final int HEIGHT = WIDTH  * 3 / 4;
+    public static final int HEIGHT = WIDTH * 3 / 4;
     public static final int SCALE = 4;
     public static final double FRAME_RATE = 60.0;
 
@@ -52,7 +53,7 @@ public class Renderer extends Canvas implements Runnable {
 
     public void init() {
         game = new Game();
-        screen = new Screen(WIDTH, HEIGHT);
+        screen = new BitmapFactory().createScreen(WIDTH, HEIGHT);
     }
 
     public void run() {
@@ -90,7 +91,7 @@ public class Renderer extends Canvas implements Runnable {
         screen.render(game);
 
         for (int i = 0; i < pixels.length; ++i)
-            pixels[i] = screen.pixels[i];
+            pixels[i] = screen.getPixels()[i];
         
         g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 

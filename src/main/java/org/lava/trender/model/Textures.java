@@ -11,15 +11,18 @@ public class Textures {
     public static Bitmap loadTexture(String path) {
         try {
             BufferedImage image = ImageIO.read(Textures.class.getResourceAsStream(path));
-            Bitmap res = new Bitmap(image.getWidth(), image.getHeight());
-            image.getRGB(0, 0, res.width, res.height, res.pixels, 0, res.width);
+            Bitmap res = new BitmapFactory().createBitmap(image.getWidth(), image.getHeight());
+            int resWidth = res.getWidth();
+            int resHeight = res.getHeight();
+            int[] resPixels = res.getPixels();
+            image.getRGB(0, 0, resWidth, resHeight, resPixels, 0, resWidth);
 
-            for (int i = 0; i < res.pixels.length; ++i) {
-                int ci = res.pixels[i];
+            for (int i = 0; i < resPixels.length; ++i) {
+                int ci = resPixels[i];
                 int col = (ci & 0xf) >> 2;
                 if (ci == 0xffff00ff)
                     col = -1;
-                res.pixels[i] = col;
+                res.setPixel(col, i);
             }
 
             return res;

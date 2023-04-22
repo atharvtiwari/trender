@@ -2,15 +2,45 @@ package org.lava.trender.model;
 
 public class Bitmap
 {
-    public int width;
-    public int height;
-    public int[] pixels;
+    private int width;
+    private int height;
+    private int[] pixels;
     
     public Bitmap(int width, int height)
     {
         this.width = width;
         this.height = height;
         this.pixels = new int[width * height];
+    }
+
+    public int getWidth()
+    {
+        return width;
+    }
+
+    public int getHeight()
+    {
+        return height;
+    }
+
+    public int[] getPixels()
+    {
+        return pixels;
+    }
+
+    public void setWidth(int width)
+    {
+        this.width = width;
+    }
+
+    public void setHeight(int height)
+    {
+        this.height = height;
+    }
+
+    public void setPixel(int value, int position)
+    {
+        this.pixels[position] = value;
     }
 
     public void render(Bitmap bitmap, int ox, int oy)

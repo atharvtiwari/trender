@@ -6,9 +6,16 @@ public class Bitmap3D extends Bitmap {
     private double[] depthBuffer;
     private double[] depthBufferWall;
     private double xCam, yCam, zCam, rot, rSin, rCos, fov, xCenter, yCenter;
+    private int width;
+    private int height;
+    private int[] pixels;
 
     public Bitmap3D(int width, int height) {
         super(width, height);
+
+        this.width = width;
+        this.height = height;
+        this.pixels = getPixels();
 
         depthBuffer = new double[width * height];
         depthBufferWall = new double[width];
@@ -115,7 +122,7 @@ public class Bitmap3D extends Bitmap {
                 int xt = (int) (prx * 16);
 
                 if (depthBuffer[xp + yp * width] > zz)  {
-                    int color = Textures.textures.pixels[xt + texture * 16 + (yt + 16 * 2) * 128];
+                    int color = Textures.textures.getPixels()[xt + texture * 16 + (yt + 16 * 2) * 128];
                     if (color > 0) {
                         pixels[xp + yp * width] = color * colour;
                         depthBuffer[xp + yp * width] = zz;
@@ -216,7 +223,7 @@ public class Bitmap3D extends Bitmap {
                 int yTex = (int) (py * 16);
 
                 depthBuffer[x + y * width] = 8 / iz;
-                pixels[x + y * width] = Textures.textures.pixels[(xTex + texture * 16) + (yTex + 0) * Textures.textures.width] * color;
+                pixels[x + y * width] = Textures.textures.getPixels()[(xTex + texture * 16) + (yTex + 0) * Textures.textures.getWidth()] * color;
             }
         }
     }
@@ -253,7 +260,7 @@ public class Bitmap3D extends Bitmap {
                 int col = yd > 0 ? block.getFloorColour() : block.getCeilingColour();
 
                 depthBuffer[x + y * width] = zd;
-                pixels[x + y * width] = Textures.textures.pixels[((xPix & 15) + tex * 16) | (15 - (yPix & 15) + 16) * Textures.textures.width] * col;
+                pixels[x + y * width] = Textures.textures.getPixels()[((xPix & 15) + tex * 16) | (15 - (yPix & 15) + 16) * Textures.textures.getWidth()] * col;
             }
         }
     }
