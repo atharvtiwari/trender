@@ -3,14 +3,15 @@ package org.lava.trender.model;
 import org.lava.trender.controller.Game;
 
 public class Screen extends Bitmap {
-    private Bitmap3D perspectiveVision;
+    private Bitmap perspectiveVision;
 
     public Screen(int width, int height) {
         super(width, height);
 
         perspectiveVision = new BitmapFactory().createBitmap3D(width, height);
     }
-    
+
+    @Override
     public void render(Game game) {
         clear();
         perspectiveVision.render(game);

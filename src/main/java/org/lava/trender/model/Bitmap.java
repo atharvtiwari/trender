@@ -1,5 +1,7 @@
 package org.lava.trender.model;
 
+import org.lava.trender.controller.Game;
+
 public class Bitmap
 {
     private int width;
@@ -72,4 +74,10 @@ public class Bitmap
             pixels[i] = 0;
         }
     }
+
+    public void render(Game game) {};
+    public void renderSprite(double x, double y, double z, int texture, int colour) {};
+    public void renderWall(double x0, double y0, double x1, double y1, int texture, int color) {};
+    public void renderFloor(Level level) {};
+    public void renderFog(int shader) {};
 }

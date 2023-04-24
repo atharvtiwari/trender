@@ -21,6 +21,7 @@ public class Bitmap3D extends Bitmap {
         depthBufferWall = new double[width];
     }
 
+    @Override
     public void render(Game game) {
         for (int x = 0; x < width; ++x)
             depthBufferWall[x] = 0;
@@ -79,7 +80,8 @@ public class Bitmap3D extends Bitmap {
             }
         }
     }
-    
+
+    @Override
     public void renderSprite(double x, double y, double z, int texture, int colour) {
         double xo = x - xCam;
         double yo = y + zCam / 8;
@@ -132,6 +134,7 @@ public class Bitmap3D extends Bitmap {
         }
     }
 
+    @Override
     public void renderWall(double x0, double y0, double x1, double y1, int texture, int color) {
         double xo0 = x0 - 0.5 - xCam;
         double u0 = -0.5 + zCam / 8;
@@ -228,6 +231,7 @@ public class Bitmap3D extends Bitmap {
         }
     }
 
+    @Override
     public void renderFloor(Level level) {
         for (int y = 0; y < height; y++) {
             double yd = ((y + 0.5) - (yCenter)) / fov;
@@ -265,6 +269,7 @@ public class Bitmap3D extends Bitmap {
         }
     }
 
+    @Override
     public void renderFog(int shader) {
         for (int i = 0; i < depthBuffer.length; i++) {
             double t = (i % width - width / 2.0) / (width / 1.4);

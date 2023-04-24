@@ -9,7 +9,7 @@ import java.awt.image.DataBufferInt;
 
 import org.lava.trender.controller.Game;
 import org.lava.trender.controller.InputHandler;
-import org.lava.trender.model.Screen;
+import org.lava.trender.model.Bitmap;
 import org.lava.trender.model.BitmapFactory;
 
 public class Renderer extends Canvas implements Runnable {
@@ -26,7 +26,7 @@ public class Renderer extends Canvas implements Runnable {
     public final int[] pixels;
 
     private Game game;
-    private Screen screen;
+    private Bitmap screen;
     private InputHandler inputHandler;
 
     public Renderer() {
@@ -87,12 +87,12 @@ public class Renderer extends Canvas implements Runnable {
         Graphics g = bs.getDrawGraphics();
         for (int i =0; i< pixels.length; i++)
             pixels[i] = 0;
-        
+
         screen.render(game);
 
         for (int i = 0; i < pixels.length; ++i)
             pixels[i] = screen.getPixels()[i];
-        
+
         g.drawImage(image, 0, 0, WIDTH * SCALE, HEIGHT * SCALE, null);
 
         g.dispose();
