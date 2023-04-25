@@ -41,6 +41,7 @@ public class Level {
                     block = new Block.BlockBuilder().setSolidMotion(true).setSolidRender(true).setColour(0x667CDB & 0x555555).build();
                 }
                 else if (type == 0xFFFF00) {
+                    block = new Block.BlockBuilder().setCeilingColour(0x005500).setFloorColour(0x005500).build();
                     xSpawn = x;
                     ySpawn = y;
                 }
@@ -48,7 +49,7 @@ public class Level {
                     block = new Block.BlockBuilder().addSprite(new Sprite.SpriteBuilder().setColour(0x003300).build()).build();
                 }
                 else if (type == 0xff00ff) {
-                    block = new Block.BlockBuilder().setCeilingColour(0x550055).setFloorColour(0x550000).build();
+                    block = new Block.BlockBuilder().setCeilingColour(0x550000).setFloorColour(0x550000).build();
                 }
 
                 tile[x + y * width] = block;

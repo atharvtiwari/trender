@@ -13,7 +13,7 @@ public class Game {
     public int time;
 
     private Game() {
-        level = Level.loadLevel("level0");
+        level = Level.loadLevel("level1");
         player = Player.getInstance(this);
     }
 
